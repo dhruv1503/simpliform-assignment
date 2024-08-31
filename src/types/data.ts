@@ -7,7 +7,7 @@ export type TModel = {
     avatar: string;
   };
 
-export type TModelList = TModelList[]
+export type TModelList = TModel[]
 
 export type TInput = {
   name : string,
@@ -55,9 +55,9 @@ export const rangeConstants: { [key: string]: TRange } = {
 };
 
 
-export type TSpecificationInput = {
-  [K in keyof typeof rangeConstants]: TInput & { range: TRange };
-};
+export type TSpecificationInput = TInput & { range: TRange };
+
+
 
 export type TOutput = {
   output : string,
@@ -75,6 +75,6 @@ export type TOutputPrediction = {
 export type TOutputPredisctionList = TOutputPrediction[]
 
 export type TModelSpace = TModel & {
-outputs : [],
+outputs : TOutputPredisctionList,
 inputs : Array<TInput | TSpecificationInput>
 }

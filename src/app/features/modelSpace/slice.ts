@@ -1,16 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getModelSpaceByIdThunk } from "./thunks";
 
 interface ModelSlice  {
 id : string,
 name : string,
 description : string,
+avatar : string,
+isLoading : boolean
 
 }
 
 const initialState : ModelSlice = {
     id : "",
     name : "",
-    description : ""
+    description : "",
+    isLoading : false,
+    avatar : ""
 
 }
 
@@ -27,7 +32,29 @@ export const modelSpaceSlice = createSlice({
         },
         setDescription : (state, {payload} : PayloadAction<string>) => {
             state.description = payload
+        },
+        setIsLoading : (state, {payload} : PayloadAction<boolean>)  => {
+            state.isLoading = payload
         }
+    },
+    extraReducers : (builder) => {
+        builder
+        .addCase(getModelSpaceByIdThunk.pending, (state) => {
+          state.isLoading = true
+          state.description = ""
+          state.id = ""
+          state.name = ""
+          state.avatar = ""
+         
+        })
+        .addCase(getModelSpaceByIdThunk.fulfilled, (state, action) => {
+            console.log(action.payload.data)
+            state.description = action.payload.data.description;
+            state.avatar = action.payload.data.avatar;
+            state.name = action.payload.data.name;
+            state.id = action.payload.data.id;
+            state.isLoading = false
+        })
     }
 })
 
