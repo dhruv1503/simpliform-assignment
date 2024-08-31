@@ -1,9 +1,9 @@
-import axios from "axios";
+import { apiInstance, CustomResponse } from ".";
 
 export const getAllModelSpace = async () => {
   try {
-    const { data } = await axios.get("/model-spaces");
-    return data;
+    const {data, timeConsumed} : CustomResponse = await apiInstance.get("/model-spaces");
+    return {data: data.data, timeConsumed};
   } catch (error) {
     return error;
   }
@@ -11,8 +11,9 @@ export const getAllModelSpace = async () => {
 
 export const getModelSpacesById = async (id: string) => {
   try {
-    const { data } = await axios.get(`/model-spaces/${id}`);
-    return data;
+    const {data, timeConsumed} : CustomResponse  = await apiInstance.get(`/model-spaces/${id}`);
+    console.log({data : data.data, timeConsumed})
+    return {data, timeConsumed};
   } catch (error) {
     return error;
   }

@@ -3,6 +3,8 @@ import { Divider, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { SpaceLayout } from "../../../layouts/space-layout";
 import { ModelSpaceHeader } from "./components/ModelSpaceHeader";
 import { TModelSpaceHeaderProps } from "../../../types/props";
+import { useEffect } from "react";
+import { getModelSpacesById } from "../../../server/model-space";
 //import { useEffect } from "react";
 
 const exampleData: TModelSpaceHeaderProps = {
@@ -16,7 +18,9 @@ const exampleData: TModelSpaceHeaderProps = {
 export const ModelSpace = () => {
   const { id } = useParams();
   console.log(id);
-  //api call will happen here
+useEffect(() => {
+  if(id) getModelSpacesById(id)
+}, [])
   return (
     <SpaceLayout>
       <Flex as="main" bgColor="black" display="flex" justifyContent="center" background="#000000" minH={"calc(100vh - 54px)"}  maxH={"calc(100vh - 54px - 8px)"}>
