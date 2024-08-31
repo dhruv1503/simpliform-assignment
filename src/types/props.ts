@@ -1,3 +1,5 @@
+import { type TModel } from "./data";
+
 export type MainLayoutProps = {
     children: React.ReactNode;
     maxHeight?: string
@@ -22,3 +24,5 @@ export type TSliderInput = Omit<TInput, "onChange" | "value"> & {
     step : number
     value : number
 }
+
+export type TModelSpaceProps = Omit<TModel,"id">
