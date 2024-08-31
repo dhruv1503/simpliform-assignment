@@ -25,4 +25,4 @@ export type TSliderInput = Omit<TInput, "onChange" | "value"> & {
     value : number
 }
 
-export type TModelSpaceProps = Omit<TModel,"id">
+export type TModelSpaceHeaderProps = Omit<TModel,"id">
