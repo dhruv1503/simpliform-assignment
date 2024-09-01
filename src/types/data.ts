@@ -12,10 +12,12 @@ export type TModelList = TModel[]
 export type TInput = {
   name : string,
   type : string,
-  defaultValue : number | string | null,
+  default? : number | string,
   description : string,
   required : boolean
 }
+
+export type TInputList = TInputList[]
 
 
 
@@ -49,7 +51,14 @@ export const rangeConstants: { [key: string]: TRange } = {
     min : 0,
     max : 2,
     steps : 0.01
-  }
+  },
+  "Sampling Rate" : {
+    min : 8000,
+    max : 44000,
+    steps: 1
+  },
+  
+
 
 
 };
@@ -57,7 +66,7 @@ export const rangeConstants: { [key: string]: TRange } = {
 
 export type TSpecificationInput = TInput & { range: TRange };
 
-
+export type TSpecificationInputList = TSpecificationInput[];
 
 export type TOutput = {
   output : string,
@@ -72,9 +81,17 @@ export type TOutputPrediction = {
   [key in string] : string
 }
 
-export type TOutputPredisctionList = TOutputPrediction[]
+export type TOutputPredictionList = TOutputPrediction[]
+
+export type TInputsCollection = {
+  inputs : TInputList | [],
+  specificationInputs : TSpecificationInputList | []
+}
+
+export type AllInputs = Array<TInput | TSpecificationInput>
 
 export type TModelSpace = TModel & {
-outputs : TOutputPredisctionList,
-inputs : Array<TInput | TSpecificationInput>
+outputs : TOutputList,
+inputs : AllInputs ,
+specificationInputs : TSpecificationInput
 }

@@ -4,8 +4,9 @@ import { Flex, Box, Heading, Image, Tooltip } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { useAppSelector } from "../../../hooks";
 import { ModelSpaceLoader } from "../loaders/ModelSpaceLoader";
+import { memo } from "react";
 
-export const ModelSpaceHeader = () => {
+export const ModelSpaceHeader = memo(() => {
   const { name, avatar, description, isLoading } = useAppSelector(
     (state) => state.modelSpace
   );
@@ -30,4 +31,4 @@ export const ModelSpaceHeader = () => {
       </Box>
     </Flex>
   );
-};
+});

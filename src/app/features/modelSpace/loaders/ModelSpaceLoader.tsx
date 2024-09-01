@@ -1,4 +1,4 @@
-import { Box, Flex, Skeleton, SkeletonCircle } from "@chakra-ui/react"
+import { Box, Flex, Skeleton, SkeletonCircle} from "@chakra-ui/react"
 
 export const ModelSpaceLoader = () => {
     return  <Flex
@@ -9,9 +9,9 @@ export const ModelSpaceLoader = () => {
     w="100%"
   >
     <SkeletonCircle size={"6"}/>
-    <Box>
-    <Skeleton/>
-    <Skeleton/>
+    <Skeleton height={"20px"} width={"200px"}/>
+    <Box paddingBottom={"4px"}>
+    <SkeletonCircle size={"4"}/>
     </Box>
   </Flex>
 }
